@@ -34,6 +34,9 @@ import configs from "examples/Charts/BubbleChart/configs";
 // Soft UI Dashboard React base styles
 import colors from "assets/theme/base/colors";
 
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, PointElement, LineElement } from 'chart.js';
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+
 function BubbleChart({ title, description, height, chart }) {
   const chartDatasets = chart.datasets
     ? chart.datasets.map((dataset) => ({

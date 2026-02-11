@@ -43,6 +43,7 @@
     "react-dom": "^18.2.0",
     "react-flatpickr": "3.10.13",
     "react-loader-spinner": "^5.3.4",
+    "react-qr-code": "^2.0.18",
     "react-router-dom": "^6.30.3",
     "stylis": "4.1.1",
     "stylis-plugin-rtl": "2.1.1",

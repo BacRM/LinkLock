@@ -1,24 +1,15 @@
 /**
-=========================================================
-* Soft UI Dashboard React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ * =========================================================
+ * LinkLock Footer Component
+ * =========================================================
+ * Customized footer for LinkLock application
+ */
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
 // @mui material components
 import Link from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
@@ -60,13 +51,13 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()} 
+        &copy; {new Date().getFullYear()}
         <Link href={href} target="_blank">
           <SoftTypography variant="button" fontWeight="medium">
             &nbsp;{name}&nbsp;
           </SoftTypography>
         </Link>
-        - Coded by AppSeed.
+        - LinkLock
       </SoftBox>
       <SoftBox
         component="ul"
@@ -93,11 +84,10 @@ function Footer({ company, links }) {
 
 // Setting default values for the props of Footer
 Footer.defaultProps = {
-  company: { href: "https://www.creative-tim.com/?AFFILIATE=128200", name: "Creative-Tim" },
+  company: { href: "#", name: "S-management" },
   links: [
-    { href: "https://appseed.us/product/soft-ui-dashboard/api-server-nodejs/react/", name: "Sources" },
-    { href: "https://appseed.us/support/", name: "Support" },
-    { href: "https://appseed.us/", name: "AppSeed" },
+    { href: "#", name: "Documentation" },
+    { href: "#", name: "Support" },
   ],
 };
 

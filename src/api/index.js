@@ -16,6 +16,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => Promise.resolve(response),
   (error) => {
+    console.error("API call failed", error);
     return Promise.reject(error);
   }
 );

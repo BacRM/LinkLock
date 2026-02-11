@@ -33,12 +33,6 @@ import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
 // Soft UI Dashboard React base styles
 import typography from "assets/theme/base/typography";
 
-// RTL layout components
-import BuildByDevelopers from "layouts/rtl/components/BuildByDevelopers";
-import WorkWithTheRockets from "layouts/rtl/components/WorkWithTheRockets";
-import Projects from "layouts/rtl/components/Projects";
-import OrderOverview from "layouts/rtl/components/OrderOverview";
-
 // Data
 import reportsBarChartData from "layouts/rtl/data/reportsBarChartData";
 import gradientLineChartData from "layouts/rtl/data/gradientLineChartData";

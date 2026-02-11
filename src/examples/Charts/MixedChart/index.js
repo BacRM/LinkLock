@@ -37,6 +37,9 @@ import configs from "examples/Charts/MixedChart/configs";
 // Soft UI Dashboard React base styles
 import colors from "assets/theme/base/colors";
 
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, PointElement, LineElement } from 'chart.js';
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+
 function MixedChart({ title, description, height, chart }) {
   const chartRef = useRef(null);
   const [chartData, setChartData] = useState({});

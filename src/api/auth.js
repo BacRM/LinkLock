@@ -3,25 +3,50 @@ import { API_SERVER } from "config/constant";
 
 class AuthApi {
   static Login = (data) => {
-    return axios.post(`${API_SERVER}users/login`, data);
+    try {
+      return axios.post(`${API_SERVER}users/login`, data);
+    } catch (error) {
+      console.error("Login API call failed", error);
+      throw error;
+    }
   };
 
   static Register = (data) => {
-    return axios.post(`${API_SERVER}users/register`, data);
+    try {
+      return axios.post(`${API_SERVER}users/register`, data);
+    } catch (error) {
+      console.error("Register API call failed", error);
+      throw error;
+    }
   };
 
   static RegisterAdmin = (data) => {
-    return axios.post(`${API_SERVER}users/register`, { ...data, role: "admin" });
+    try {
+      return axios.post(`${API_SERVER}users/register`, { ...data, role: "admin" });
+    } catch (error) {
+      console.error("RegisterAdmin API call failed", error);
+      throw error;
+    }
   };
 
   static Authorize = (code) => {
-    return axios.get(`${API_SERVER}sessions/oauth/github?code=${code}`);
+    try {
+      return axios.get(`${API_SERVER}sessions/oauth/github?code=${code}`);
+    } catch (error) {
+      console.error("Authorize API call failed", error);
+      throw error;
+    }
   };
 
   static Logout = (data) => {
-    return axios.post(`${API_SERVER}users/logout`, data, {
-      headers: { Authorization: `${data.token}` },
-    });
+    try {
+      return axios.post(`${API_SERVER}users/logout`, data, {
+        headers: { Authorization: `${data.token}` },
+      });
+    } catch (error) {
+      console.error("Logout API call failed", error);
+      throw error;
+    }
   };
 }
 

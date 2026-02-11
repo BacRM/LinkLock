@@ -1,17 +1,17 @@
 /**
-=========================================================
-* Soft UI Dashboard React - v4.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ * =========================================================
+ * Soft UI Dashboard React - v4.0.0
+ * =========================================================
+ * 
+ * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
+ * Copyright 2022 Creative Tim (https://www.creative-tim.com)
+ * 
+ * Coded by www.creative-tim.com
+ * 
+ * =========================================================
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
 
 import { useEffect } from "react";
 
@@ -34,7 +34,6 @@ import SoftButton from "components/SoftButton";
 
 // Soft UI Dashboard React examples
 import SidenavCollapse from "examples/Sidenav/SidenavCollapse";
-import SidenavCard from "examples/Sidenav/SidenavCard";
 
 // Custom styles for the Sidenav
 import SidenavRoot from "examples/Sidenav/SidenavRoot";
@@ -59,8 +58,8 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     }
 
     /** 
-     The event listener that's calling the handleMiniSidenav function when resizing the window.
-    */
+     * The event listener that's calling the handleMiniSidenav function when resizing the window.
+     */
     window.addEventListener("resize", handleMiniSidenav);
 
     // Call the handleMiniSidenav function to set the state with the initial value.
@@ -144,7 +143,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           </SoftTypography>
         </SoftBox>
         <SoftBox component={NavLink} to="/" display="flex" alignItems="center">
-          {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="2rem" />}
+          {brand && <SoftBox component="img" src={brand} alt="LinkLock Logo" width="2rem" />}
           <SoftBox
             width={!brandName && "100%"}
             sx={(theme) => sidenavLogoLabel(theme, { miniSidenav })}
@@ -158,18 +157,17 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <Divider />
       <List>{renderRoutes}</List>
       <SoftBox pt={2} my={2} mx={2} mt="auto">
-        <SidenavCard />
         <SoftBox mt={2}>
           <SoftButton
             component="a"
-            href="https://appseed.us/product/soft-ui-dashboard-pro/full-stack/"
+            href="https://github.com/beyrem/LinkLock"
             target="_blank"
             rel="noreferrer"
-            variant="gradient"
+            variant="outlined"
             color={color}
             fullWidth
           >
-            upgrade to pro
+            GitHub
           </SoftButton>
         </SoftBox>
       </SoftBox>

@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const connection = mysql.createConnection({
   host: "localhost", // Remplacez par l'adresse de votre serveur MariaDB si nécessaire
   user: "root",
-  password: "allah",
+  password: process.env.DB_PASSWORD, // Use environment variable for password
   database: "Linklock", // Remplacez par le nom de votre base de données
 });
 

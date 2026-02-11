@@ -54,18 +54,21 @@ function Dashboard() {
       console.error("Dashboard: Missing chart data.", { chart });
     } else {
       console.log("Dashboard loaded successfully.");
-      // Send a Slack notification (placeholder for actual implementation)
-      fetch("https://slack.com/api/chat.postMessage", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer YOUR_SLACK_BOT_TOKEN`,
-        },
-        body: JSON.stringify({
-          channel: "#dashboard-notifications",
-          text: "Dashboard loaded successfully without runtime errors.",
-        }),
-      });
+      try {
+        fetch("https://slack.com/api/chat.postMessage", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer YOUR_SLACK_BOT_TOKEN`,
+          },
+          body: JSON.stringify({
+            channel: "#dashboard-notifications",
+            text: "Dashboard loaded successfully without runtime errors.",
+          }),
+        });
+      } catch (error) {
+        console.error("Failed to send Slack notification", error);
+      }
     }
   }, [chart]);
 

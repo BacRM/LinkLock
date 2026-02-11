@@ -26,6 +26,9 @@ import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
 function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction }) {
+  // Ensure icon has default values to prevent crashes
+  const safeIcon = icon || { color: "info", component: "key" };
+  
   return (
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
@@ -35,7 +38,7 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
               <Grid item>
                 <SoftBox
                   variant="gradient"
-                  bgColor={bgColor === "white" ? icon.color : "white"}
+                  bgColor={bgColor === "white" ? safeIcon.color : "white"}
                   color={bgColor === "white" ? "white" : "dark"}
                   width="3rem"
                   height="3rem"
@@ -46,7 +49,7 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   shadow="md"
                 >
                   <Icon fontSize="small" color="inherit">
-                    {icon.component}
+                    {safeIcon.component}
                   </Icon>
                 </SoftBox>
               </Grid>
@@ -78,7 +81,7 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
               <Grid item xs={4}>
                 <SoftBox
                   variant="gradient"
-                  bgColor={bgColor === "white" ? icon.color : "white"}
+                  bgColor={bgColor === "white" ? safeIcon.color : "white"}
                   color={bgColor === "white" ? "white" : "dark"}
                   width="3rem"
                   height="3rem"
@@ -90,7 +93,7 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   shadow="md"
                 >
                   <Icon fontSize="small" color="inherit">
-                    {icon.component}
+                    {safeIcon.component}
                   </Icon>
                 </SoftBox>
               </Grid>
@@ -114,6 +117,10 @@ MiniStatisticsCard.defaultProps = {
     text: "",
   },
   direction: "right",
+  icon: {
+    color: "info",
+    component: "key",
+  },
 };
 
 // Typechecking props for the MiniStatisticsCard

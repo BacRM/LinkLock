@@ -3,7 +3,8 @@ const bcrypt = require("bcryptjs");
 
 const createAdmin = async () => {
   try {
-    const hashedPassword = await bcrypt.hash("Azerty123", 10); // Hachage du mot de passe
+    const password = "Azerty123";
+    const hashedPassword = await bcrypt.hash(password, 10); // Hachage du mot de passe
 
     const adminData = {
       username: "Admin",
@@ -18,10 +19,10 @@ const createAdmin = async () => {
         console.error("Error creating admin account:", err);
         return;
       }
-      console.log("Admin account created successfully:", results);
+      console.log("Admin account created successfully.");
     });
   } catch (error) {
-    console.error("Unexpected error:", error);
+    console.error("Error hashing password:", error);
   }
 };
 

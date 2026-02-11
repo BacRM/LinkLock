@@ -23,7 +23,7 @@ import Tooltip from "@mui/material/Tooltip";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-function TodoList() {
+export default function TodoList() {
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox p={3}>
@@ -87,5 +87,3 @@ function TodoList() {
     </Card>
   );
 }
-
-export default TodoList;

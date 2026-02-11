@@ -16,40 +16,6 @@ Coded by www.creative-tim.com
 // Images
 import vrBg from "assets/images/vr-bg.jpg";
 
-function baseLayout({ functions, breakpoints }) {
-  const { pxToRem } = functions;
-
-  return {
-    width: "100vw",
-    height: "100vh",
-    overflow: "hidden",
-
-    [breakpoints.down("lg")]: {
-      "& .MuiDrawer-paper.makeStyles-sidenav_close-9": {
-        transform: `translateX(${pxToRem(-640)})`,
-      },
-      "& .MuiDrawer-paper.makeStyles-sidenav_open-8": {
-        transform: `translateX(${pxToRem(-280)})`,
-      },
-    },
-
-    [breakpoints.down("md")]: {
-      overflow: "auto",
-
-      "& .MuiDrawer-paper.makeStyles-sidenav_close-9": {
-        transform: `translateX(${pxToRem(-320)})`,
-      },
-      "& .MuiDrawer-paper.makeStyles-sidenav_open-8": {
-        transform: `translateX(${pxToRem(0)})`,
-      },
-    },
-
-    [breakpoints.down("sm")]: {
-      height: "auto",
-    },
-  };
-}
-
 const baseLayoutBackground = ({ borders: { borderRadius }, breakpoints }) => ({
   width: "calc(100% - 2rem)",
   height: "calc(100% - 11rem)",
@@ -79,4 +45,4 @@ const baseLayoutContent = ({ breakpoints }) => ({
   },
 });
 
-export { baseLayout, baseLayoutBackground, baseLayoutContent };
+export { baseLayoutBackground, baseLayoutContent };

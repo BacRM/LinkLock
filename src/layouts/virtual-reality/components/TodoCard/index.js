@@ -22,7 +22,7 @@ import Tooltip from "@mui/material/Tooltip";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-function TodoCard() {
+export default function TodoCard() {
   return (
     <Card>
       <SoftBox bgColor="dark" variant="gradient">
@@ -58,5 +58,3 @@ function TodoCard() {
     </Card>
   );
 }
-
-export default TodoCard;
