@@ -5,8 +5,8 @@
 
 const express = require("express");
 const router = express.Router();
-const db = require("../../config/db");
-const { logAction } = require("../../models/init-db");
+const db = require("../config/db");
+const { logAction } = require("../models/init-db");
 
 // Get all companies
 router.get("/", (req, res) => {
