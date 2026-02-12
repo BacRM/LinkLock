@@ -11,7 +11,7 @@ const { logAction } = require("../models/init-db");
 // Get all keys
 router.get("/", (req, res) => {
   const { company_id, status } = req.query;
-  let sql = "SELECT k.*, c.name as company_name FROM keys k LEFT JOIN companies c ON k.company_id = c.id WHERE 1=1";
+  let sql = "SELECT k.*, c.name as company_name FROM lock_keys k LEFT JOIN companies c ON k.company_id = c.id WHERE 1=1";
   const params = [];
   
   if (company_id) {
@@ -60,7 +60,7 @@ router.get("/visible", (req, res) => {
     // Get keys owned by the company
     const ownedKeysSql = `
       SELECT k.*, c.name as company_name, 'owned' as visibility_type
-      FROM keys k 
+      FROM lock_keys k 
       LEFT JOIN companies c ON k.company_id = c.id 
       WHERE k.company_id = ?
       ORDER BY k.created_at DESC
@@ -79,7 +79,7 @@ router.get("/visible", (req, res) => {
         SELECT k.*, c.name as company_name, 'shared' as visibility_type, 
                ks.permissions, ks.created_at as shared_at
         FROM key_shares ks
-        JOIN keys k ON ks.key_id = k.id
+        JOIN lock_keys k ON ks.key_id = k.id
         LEFT JOIN companies c ON k.company_id = c.id
         WHERE ks.shared_with_company_id = ?
         ORDER BY ks.created_at DESC
@@ -97,7 +97,7 @@ router.get("/visible", (req, res) => {
         if (company.type === 'agence_imobiliere') {
           const childKeysSql = `
             SELECT k.*, c.name as company_name, 'hierarchy' as visibility_type
-            FROM keys k 
+            FROM lock_keys k 
             LEFT JOIN companies c ON k.company_id = c.id
             WHERE c.parent_id = ?
             ORDER BY k.created_at DESC
@@ -125,7 +125,7 @@ router.get("/shared-with/:companyId", (req, res) => {
   const sql = `
     SELECT k.*, c.name as company_name, ks.permissions, ks.created_at as shared_at
     FROM key_shares ks
-    JOIN keys k ON ks.key_id = k.id
+    JOIN lock_keys k ON ks.key_id = k.id
     LEFT JOIN companies c ON k.company_id = c.id
     WHERE ks.shared_with_company_id = ?
     ORDER BY ks.created_at DESC
@@ -144,7 +144,7 @@ router.get("/shared-with/:companyId", (req, res) => {
 router.get("/:id", (req, res) => {
   const sql = `
     SELECT k.*, c.name as company_name 
-    FROM keys k 
+    FROM lock_keys k 
     LEFT JOIN companies c ON k.company_id = c.id 
     WHERE k.id = ?
   `;
@@ -216,7 +216,7 @@ router.post("/", (req, res) => {
   } = req.body;
   
   const sql = `
-    INSERT INTO keys 
+    INSERT INTO lock_keys 
     (entreprise_origine_id, company_id, manager_id, address, owner_name, owner_contact, 
      house_manager_name, house_manager_contact, key_location, status, notes)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -267,7 +267,7 @@ router.put("/:id", (req, res) => {
   const keyId = req.params.id;
   
   const sql = `
-    UPDATE keys 
+    UPDATE lock_keys 
     SET company_id = ?, manager_id = ?, address = ?, owner_name = ?, owner_contact = ?,
         house_manager_name = ?, house_manager_contact = ?, key_location = ?, status = ?, notes = ?
     WHERE id = ?
@@ -302,7 +302,7 @@ router.patch("/:id/status", (req, res) => {
   const { status } = req.body;
   const keyId = req.params.id;
   
-  const sql = "UPDATE keys SET status = ? WHERE id = ?";
+  const sql = "UPDATE lock_keys SET status = ? WHERE id = ?";
   
   db.query(sql, [status, keyId], (err, result) => {
     if (err) {
@@ -318,7 +318,7 @@ router.patch("/:id/status", (req, res) => {
 
 // Delete key
 router.delete("/:id", (req, res) => {
-  const sql = "DELETE FROM keys WHERE id = ?";
+  const sql = "DELETE FROM lock_keys WHERE id = ?";
   
   db.query(sql, [req.params.id], (err, result) => {
     if (err) {
@@ -415,7 +415,7 @@ router.get("/stats/summary", (req, res) => {
       SUM(CASE WHEN status = 'borrowed' THEN 1 ELSE 0 END) as borrowed,
       SUM(CASE WHEN status = 'returned' THEN 1 ELSE 0 END) as returned,
       SUM(CASE WHEN status = 'lost' THEN 1 ELSE 0 END) as lost
-    FROM keys
+    FROM lock_keys
   `;
   
   const params = [];

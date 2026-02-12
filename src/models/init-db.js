@@ -42,8 +42,8 @@ const createTablesSQL = [
     FOREIGN KEY (company_id) REFERENCES companies(id) ON DELETE CASCADE
   )`,
 
-  // Keys table - owned by origin company
-  `CREATE TABLE IF NOT EXISTS keys (
+  // Keys table - owned by origin company (renamed from 'keys' to 'lock_keys' because 'keys' is reserved)
+  `CREATE TABLE IF NOT EXISTS lock_keys (
     id INT AUTO_INCREMENT PRIMARY KEY,
     entreprise_origine_id INT NOT NULL,
     company_id INT NOT NULL,
@@ -72,7 +72,7 @@ const createTablesSQL = [
     permissions ENUM('view', 'edit', 'full') DEFAULT 'view',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (key_id) REFERENCES keys(id) ON DELETE CASCADE,
+    FOREIGN KEY (key_id) REFERENCES lock_keys(id) ON DELETE CASCADE,
     FOREIGN KEY (shared_with_company_id) REFERENCES companies(id) ON DELETE CASCADE,
     FOREIGN KEY (shared_by_user_id) REFERENCES personnel(id) ON DELETE SET NULL,
     UNIQUE KEY unique_share (key_id, shared_with_company_id)
